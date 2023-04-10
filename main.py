@@ -62,18 +62,20 @@ def refresh():
     [tree.delete(child) for child in tree.get_children()]
     [tree.insert("", "end", values=process, tags=("row", )) for process in getProcesses()]
 
-    if sort != 1:
-        sort_treeview(tree, "Name" if sort == 0 else "PID", False)
+    if sort == 0:
+        sort_treeview(tree, "Name", False)
 
 
 def setSort(id):
     global sort
     sort = id
-    sort_treeview(tree, "Name" if sort == 0 else "PID", False)
+    if sort == 0:
+        sort_treeview(tree, "Name", False)
 
 
 root = tkinter.Tk()
 root.geometry("450x800")
+root.title("Prioritize")
 
 menu = tkinter.Menu(root, tearoff=0)
 submenu = tkinter.Menu(menu, tearoff=0)
